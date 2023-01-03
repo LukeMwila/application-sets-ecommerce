@@ -16,9 +16,9 @@ spec:
     spec:
       project: '{{app.project}}'
       source:
-        repoURL: '{{app.repoURL}}'
+        repoURL: '{{app.sourceRepoURL}}'
         targetRevision: '{{app.sourceTargetRevision}}'
-        path: '{{app.path}}'
+        path: '{{app.sourcePath}}'
         helm:
           valueFiles: ['values-dev.yaml']
       destination:
