@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: ecommerce
+  name: orders-vcluster
   namespace: argocd
 spec:
   generators:

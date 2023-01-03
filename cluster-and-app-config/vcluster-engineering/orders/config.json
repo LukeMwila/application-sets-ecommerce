@@ -7,7 +7,7 @@
     },
     "app": {
         "owner": "ecommerce-engineering@company.com",
-        "project": "ecommerce",
+        "project": "orders-vcluster",
         "name": "orders",
         "sourceRepoURL": "https://github.com/LukeMwila/microservice-example-helm-charts.git",
         "sourceTargetRevision": "main",
