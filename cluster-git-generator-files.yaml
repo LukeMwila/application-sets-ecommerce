@@ -16,7 +16,7 @@ spec:
     spec:
       project: '{{cluster.project}}'
       source:
-        chart: loft/vcluster
+        chart: vcluster
         repoURL: https://charts.loft.sh
         targetRevision: 0.14.0-alpha.0
         helm:
@@ -24,6 +24,37 @@ spec:
           parameters:
           - name: storage.persistence
             value: "false"
+          - name: vcluster.image
+            value: rancher/k3s:v1.23.3-k3s1
+          - name: init.manifests
+            value: |-
+              ---
+              apiVersion: v1
+              kind: ServiceAccount
+              metadata:
+                name: argocd-admin
+                namespace: default
+              ---
+              apiVersion: rbac.authorization.k8s.io/v1
+              kind: ClusterRoleBinding
+              metadata:
+                name: argocd-admin-binding
+              roleRef:
+                apiGroup: rbac.authorization.k8s.io
+                kind: ClusterRole
+                name: cluster-admin
+              subjects:
+              - kind: ServiceAccount
+                name: argocd-admin
+                namespace: default
+              ---
+              apiVersion: v1
+              kind: Secret
+              metadata:
+                name: argocd-admin-token
+                annotations:
+                  kubernetes.io/service-account.name: argocd-admin
+              type: kubernetes.io/service-account-token
       destination:
         server: '{{cluster.address}}'
         namespace: '{{cluster.namespace}}'
