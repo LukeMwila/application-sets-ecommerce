@@ -26,6 +26,8 @@ spec:
             value: "false"
           - name: vcluster.image
             value: rancher/k3s:v1.23.3-k3s1
+          - name: syncer.extraArgs
+            value: '- --tls-san={{cluster.vclusterURL}}'
           - name: init.manifests
             value: |-
               ---

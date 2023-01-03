@@ -4,6 +4,7 @@
         "name": "orders-vcluster",
         "address": "https://A2A2D8EBA00B0DBFA2FD319ED5311DDF.gr7.eu-west-1.eks.amazonaws.com",
         "namespace": "orders-vcluster",
-        "project": "orders-vcluster"
+        "project": "orders-vcluster",
+        "vclusterURL": "a8a47424a9b6d43f282990d14e014b67-1638277812.eu-west-1.elb.amazonaws.com"
     }
 }
