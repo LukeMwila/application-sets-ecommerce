@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: vclusters
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: https://github.com/LukeMwila/application-sets-ecommerce.git
+      revision: HEAD
+      files:
+      - path: "cluster-and-app-config/vclusters/**/config.json"
+  template:
+    metadata:
+      name: '{{cluster.name}}'
+    spec:
+      project: '{{cluster.project}}'
+      source:
+        chart: loft/vcluster
+        repoURL: https://charts.loft.sh
+        targetRevision: 0.14.0-alpha.0
+        helm:
+          releaseName: '{{cluster.name}}'
+          parameters:
+          - name: storage.persistence
+            value: "false"
+      destination:
+        server: '{{cluster.address}}'
+        namespace: '{{cluster.namespace}}'
