@@ -2,7 +2,7 @@
     "cluster": {
         "owner": "eks-beta-cluster-admin@company.com",
         "name": "EKS beta",
-        "address": "https://a8a47424a9b6d43f282990d14e014b67-1638277812.eu-west-1.elb.amazonaws.com",
+        "address": "https://orders-vcluster.vcluster",
         "namespace": "ecommerce"
     },
     "app": {

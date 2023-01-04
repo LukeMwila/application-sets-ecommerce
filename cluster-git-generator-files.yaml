@@ -31,6 +31,10 @@ spec:
               --- 
               kind: Namespace
               metadata:
+                name: {{app.namespace}}
+              ---
+              kind: Namespace
+              metadata:
                 name: {{cluster.namespace}}
               ---
               apiVersion: v1

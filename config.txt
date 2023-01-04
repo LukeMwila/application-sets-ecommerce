@@ -1,4 +1,4 @@
-kubectl get secrets -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='argocd-admin')].data.token}" | base64 -di > output.txt
+kubectl get secrets -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='argocd-admin')].data.token}" -n orders-vcluster | base64 -di > output.txt
 add namespace to init manifest
 get the auto generated token from vcluster, add it to cluster secret, and create cluster secret
 
