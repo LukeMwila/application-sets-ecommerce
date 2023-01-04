@@ -24,3 +24,6 @@ spec:
       destination:
         server: '{{vcluster.address}}'
         namespace: '{{vcluster.namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
