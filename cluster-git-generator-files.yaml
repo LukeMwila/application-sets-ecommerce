@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: vclusters
+  name: vcluster-appset
   namespace: argocd
 spec:
   generators:
@@ -14,7 +14,7 @@ spec:
     metadata:
       name: '{{cluster.name}}'
     spec:
-      project: '{{cluster.project}}'
+      project: '{{argo.project}}'
       source:
         chart: vcluster
         repoURL: https://charts.loft.sh
@@ -37,13 +37,13 @@ spec:
               apiVersion: v1
               kind: Namespace
               metadata:
-                name: {{cluster.namespace}}
+                name: {{vcluster.namespace}}
               ---
               apiVersion: v1
               kind: ServiceAccount
               metadata:
                 name: argocd-admin
-                namespace: {{cluster.namespace}}
+                namespace: {{vcluster.namespace}}
               ---
               apiVersion: rbac.authorization.k8s.io/v1
               kind: ClusterRoleBinding
@@ -56,10 +56,10 @@ spec:
               subjects:
               - kind: ServiceAccount
                 name: argocd-admin
-                namespace: {{cluster.namespace}}
+                namespace: {{vcluster.namespace}}
       destination:
-        server: '{{cluster.address}}'
-        namespace: '{{cluster.namespace}}'
+        server: '{{hcluster.address}}'
+        namespace: '{{hcluster.namespace}}'
       syncPolicy:
         automated:
           prune: true

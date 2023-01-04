@@ -1,5 +1,5 @@
 {
-    "cluster": {
+    "vcluster": {
         "owner": "eks-beta-cluster-admin@company.com",
         "name": "EKS beta",
         "address": "https://orders-vcluster.vcluster",
@@ -11,6 +11,7 @@
         "name": "orders",
         "sourceRepoURL": "https://github.com/LukeMwila/microservice-example-helm-charts.git",
         "sourceTargetRevision": "main",
-        "sourcePath": "application-charts/orders"
+        "sourcePath": "application-charts/orders",
+        "helmValuesFile": "values-dev.yaml"
     }
 }

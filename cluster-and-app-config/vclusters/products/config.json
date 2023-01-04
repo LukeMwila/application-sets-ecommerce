@@ -1,10 +1,16 @@
 {
-    "cluster": {
+    "argo": {
+        "project": "products-vcluster"
+    },
+    "hcluster": {
+        "address": "https://kubernetes.default.svc",
+        "namespace": "vcluster"
+    },
+    "vcluster": {
         "owner": "ecommerce-engineering@company.com",
         "name": "products-vcluster",
         "address": "https://kubernetes.default.svc",
-        "project": "products-vcluster",
-        "namespace": "products-vcluster"
+        "namespace": "vcluster-system"
     },
     "app": {
         "namespace": "ecommerce"

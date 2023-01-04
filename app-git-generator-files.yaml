@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: orders-vcluster
+  name: application-appset
   namespace: argocd
 spec:
   generators:
@@ -20,7 +20,7 @@ spec:
         targetRevision: '{{app.sourceTargetRevision}}'
         path: '{{app.sourcePath}}'
         helm:
-          valueFiles: ['values-dev.yaml']
+          valueFiles: ['{{app.helmValuesFile}}']
       destination:
-        server: '{{cluster.address}}'
-        namespace: '{{cluster.namespace}}'
+        server: '{{vcluster.address}}'
+        namespace: '{{vcluster.namespace}}'
