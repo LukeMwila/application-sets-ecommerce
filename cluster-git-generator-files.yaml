@@ -26,16 +26,18 @@ spec:
             value: "false"
           - name: vcluster.image
             value: rancher/k3s:v1.23.3-k3s1
-          - name: syncer.extraArgs
-            value: '- --tls-san={{cluster.vclusterURL}}'
           - name: init.manifests
             value: |-
+              --- 
+              kind: Namespace
+              metadata:
+                name: {{cluster.namespace}}
               ---
               apiVersion: v1
               kind: ServiceAccount
               metadata:
                 name: argocd-admin
-                namespace: default
+                namespace: {{cluster.namespace}}
               ---
               apiVersion: rbac.authorization.k8s.io/v1
               kind: ClusterRoleBinding
@@ -48,15 +50,19 @@ spec:
               subjects:
               - kind: ServiceAccount
                 name: argocd-admin
-                namespace: default
+                namespace: {{cluster.namespace}}
               ---
               apiVersion: v1
               kind: Secret
               metadata:
                 name: argocd-admin-token
+                namespace: {{cluster.namespace}}
                 annotations:
                   kubernetes.io/service-account.name: argocd-admin
               type: kubernetes.io/service-account-token
       destination:
         server: '{{cluster.address}}'
         namespace: '{{cluster.namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
