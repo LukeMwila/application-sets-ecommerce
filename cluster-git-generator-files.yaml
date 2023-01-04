@@ -29,10 +29,12 @@ spec:
           - name: init.manifests
             value: |-
               --- 
+              apiVersion: v1
               kind: Namespace
               metadata:
                 name: {{app.namespace}}
               ---
+              apiVersion: v1
               kind: Namespace
               metadata:
                 name: {{cluster.namespace}}
