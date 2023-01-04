@@ -12,7 +12,7 @@ spec:
       - path: "cluster-and-app-config/vclusters/**/config.json"
   template:
     metadata:
-      name: '{{cluster.name}}'
+      name: '{{vcluster.name}}'
     spec:
       project: '{{argo.project}}'
       source:
@@ -20,7 +20,7 @@ spec:
         repoURL: https://charts.loft.sh
         targetRevision: 0.14.0-alpha.0
         helm:
-          releaseName: '{{cluster.name}}'
+          releaseName: '{{vcluster.name}}'
           parameters:
           - name: storage.persistence
             value: "false"

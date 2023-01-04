@@ -1,0 +1,7 @@
+apiVersion: v2
+description: A Helm Chart to add new vclusters to ArgoCD
+name: ArgoCD-cluster-configs
+version: 0.0.1
+keywords:
+  - vcluster
+  - ArgoCD
