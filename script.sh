@@ -11,6 +11,9 @@ EKS_REGION="eu-west-1"
 # Connect to host EKS cluster (with argocd)
 aws eks --region $EKS_REGION update-kubeconfig --name $EKS_CLUSTER_NAME
 
+# Create namespace on host cluster where vclusters will live
+kubectl create ns vcluster
+
 # Create Application Set for vclusters
 kubectl apply -f cluster-git-generator-files.yaml
 
