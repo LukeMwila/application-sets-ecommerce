@@ -57,15 +57,6 @@ spec:
               - kind: ServiceAccount
                 name: argocd-admin
                 namespace: {{cluster.namespace}}
-              ---
-              apiVersion: v1
-              kind: Secret
-              metadata:
-                name: argocd-admin-token
-                namespace: {{cluster.namespace}}
-                annotations:
-                  kubernetes.io/service-account.name: argocd-admin
-              type: kubernetes.io/service-account-token
       destination:
         server: '{{cluster.address}}'
         namespace: '{{cluster.namespace}}'

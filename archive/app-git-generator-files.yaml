@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: orders-vcluster
+  name: ecommerce
   namespace: argocd
 spec:
   generators:
@@ -9,7 +9,7 @@ spec:
       repoURL: https://github.com/LukeMwila/application-sets-ecommerce.git
       revision: HEAD
       files:
-      - path: "cluster-and-app-config/vcluster-engineering/**/config.json"
+      - path: "cluster-and-app-config/**/config.json"
   template:
     metadata:
       name: '{{app.name}}'

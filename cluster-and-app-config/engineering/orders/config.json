@@ -2,12 +2,12 @@
     "cluster": {
         "owner": "eks-beta-cluster-admin@company.com",
         "name": "EKS beta",
-        "address": "https://A2A2D8EBA00B0DBFA2FD319ED5311DDF.gr7.eu-west-1.eks.amazonaws.com",
+        "address": "https://orders-vcluster.vcluster",
         "namespace": "ecommerce"
     },
     "app": {
         "owner": "ecommerce-engineering@company.com",
-        "project": "ecommerce",
+        "project": "orders-vcluster",
         "name": "orders",
         "sourceRepoURL": "https://github.com/LukeMwila/microservice-example-helm-charts.git",
         "sourceTargetRevision": "main",
