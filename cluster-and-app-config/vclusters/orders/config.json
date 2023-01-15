@@ -9,7 +9,6 @@
     "vcluster": {
         "owner": "ecommerce-engineering@company.com",
         "name": "orders-vcluster",
-        "address": "https://kubernetes.default.svc",
         "namespace": "vcluster-system"
     },
     "app": {

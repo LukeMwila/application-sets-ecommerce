@@ -19,7 +19,7 @@ echo "Creating namespace for virtual clusters..."
 kubectl create ns vcluster
 
 # Create Application Set for vclusters
-kubectl apply -f cluster-git-generator-files.yaml
+kubectl apply -f vcluster-appset.yaml
 
 # Wait for vclusters to start up
 echo "Waiting for vclusters to start up..."
@@ -27,6 +27,7 @@ sleep 2m
 
 echo "Vclusters are up and running. Continuing with script execution..."
 
+# Add vclusters to ArgoCD
 # Connect to virtual clusters, fetch argocd admin sa tokens, populate manifest template for Argocd cluster secret and deploy
 helm template $VCLUSTER_A ./argocd-add-cluster --set vcluster_name=$VCLUSTER_A \
 --set argocd_admin_sa_token=$(vcluster connect -s $VCLUSTER_A -- kubectl get secrets -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='argocd-admin')].data.token}" -n vcluster-system | base64 --decode) > $VCLUSTER_A.yaml
@@ -39,6 +40,6 @@ echo "Vcluster secret manifests for ArgoCD have been created. Deploying to Argoc
 kubectl apply -f $VCLUSTER_A.yaml,$VCLUSTER_B.yaml
 
 # Create Application Set for apps to be deployed to vclusters
-kubectl apply -f app-git-generator-files.yaml
+kubectl apply -f application-appset.yaml
 
 echo "The virtual development clusters ($VCLUSTER_A, $VCLUSTER_B) are ready, and the respective applications have been deployed by ArgoCD :)"
