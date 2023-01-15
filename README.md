@@ -1,5 +1,5 @@
 # Self-Service Kubernetes Development with ArgoCD
-This repository contains the source code for an example/walk-through that makes use of [ArgoCD's ApplicationSets](https://argo-cd.readthedocs.io/en/stable/user-guide/application-set/) to demonstrate self-service Kubernetes development. The source code creates two virtual clusters and two microservices (orders and products) that will be deployed to each of these clusters using GitOps. 
+This repository contains the source code for an example/walk-through that makes use of [ArgoCD's ApplicationSets](https://argo-cd.readthedocs.io/en/stable/user-guide/application-set/) to demonstrate self-service Kubernetes development. The source code creates two [virtual clusters](https://www.vcluster.com/docs/what-are-virtual-clusters) and two microservices (orders and products) that will be deployed to each of these clusters using GitOps. 
 
 ## Prerequisites
 * A [Kubernetes](https://kubernetes.io/) cluster. This example uses an EKS cluster but you can use any Kubernetes cluster as long as you update the *creation-script.sh* file accordingly.

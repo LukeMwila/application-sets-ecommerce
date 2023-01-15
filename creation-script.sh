@@ -5,12 +5,13 @@
 
 VCLUSTER_A="orders-vcluster"
 VCLUSTER_B="products-vcluster"
-EKS_CLUSTER_NAME="alpha"
-EKS_REGION="eu-west-1"
+EKS_CLUSTER_NAME="add-your-cluster-name-here"
+EKS_REGION="region"
 
 echo "Starting script execution for vcluster and apps creation with ArgoCD..."
 
 # Connect to host EKS cluster (with argocd)
+# The command below is for an EKS cluster, you can change this as you see fit.
 echo "Connecting to host EKS cluster..."
 aws eks --region $EKS_REGION update-kubeconfig --name $EKS_CLUSTER_NAME
 
