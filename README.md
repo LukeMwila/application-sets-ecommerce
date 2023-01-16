@@ -3,7 +3,7 @@ This repository contains the source code for an example/walk-through that makes 
 
 ## Prerequisites
 * A [Kubernetes](https://kubernetes.io/) cluster. This example uses an EKS cluster but you can use any Kubernetes cluster as long as you update the *creation-script.sh* file accordingly.
-* ArgoCD deployed to Kubernetes cluster
+* [ArgoCD](https://argo-cd.readthedocs.io/en/stable/) deployed to Kubernetes cluster
 * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-version.html)
 * [kubectl](https://kubernetes.io/docs/tasks/tools/) 
 * [Vcluster CLI](https://www.vcluster.com/docs/getting-started/setup)
@@ -16,6 +16,44 @@ You can watch a detailed walk-through on how to make use of this example.
 
 [![Alt text](./video-thumbnail.jpg?raw=true "Video Thumbnail")](https://youtu.be/pCoqqNZmnP8)
 
+## Folder Structure
+This section outlines the file and folder structure for this repo.
+
+```
+├── application-appset.yaml
+├── argocd-add-cluster
+│   ├── Chart.yaml
+│   ├── templates
+│   │   └── cluster-secret.yaml
+│   └── values.yaml
+├── argocd-projects
+│   ├── orders-vcluster.yaml
+│   └── products-vcluster.yaml
+├── cleanup-script.sh
+├── cluster-and-app-config
+│   ├── engineering
+│   │   ├── orders
+│   │   │   └── config.json
+│   │   └── products
+│   │       └── config.json
+│   └── vclusters
+│       ├── orders
+│       │   └── config.json
+│       └── products
+│           └── config.json
+├── creation-script.sh
+├── diagrams
+│   ├── diagram1.png
+│   ├── diagram2.png
+│   ├── diagram3.png
+│   ├── diagram4.png
+│   ├── diagram5.png
+│   └── diagram6.png
+├── LICENSE
+├── README.md
+├── vcluster-appset.yaml
+└── video-thumbnail.jpg
+```
 
 ## Self-Service Kubernetes Development with GitOps
 Here's an example of a development workflow using GitOps, application developers can define the infrastructure that they need as code, and submit it as a pull request. A platform team can then review the pull request, and upon approval, merge it to the branch that your GitOps operator is watching. The GitOps operator will then compare this to the live state, detect any differences and reconcile the state based on the declarations in the repo. As a result, the infrastructure change control process to Kubernetes is automated, and primarily driven by developers.

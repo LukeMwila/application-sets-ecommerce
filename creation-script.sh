@@ -1,6 +1,6 @@
 ### Prerequisites
-## Infrastructure: Amazon EKS cluster (host cluster)
-## Applications: Argocd deployed to host cluster
+## Kubernetes cluster (this example uses EKS)
+## Argocd deployed to host cluster
 ## CLI tools: AWS CLI, kubectl, vcluster CLI
 
 VCLUSTER_A="orders-vcluster"
@@ -14,6 +14,10 @@ echo "Starting script execution for vcluster and apps creation with ArgoCD..."
 # The command below is for an EKS cluster, you can change this as you see fit.
 echo "Connecting to host EKS cluster..."
 aws eks --region $EKS_REGION update-kubeconfig --name $EKS_CLUSTER_NAME
+
+# Create ArgoCD projects for the ArgoCD applications that will be created
+kubectl apply -f ./argocd-projects/orders-vcluster.yaml
+kubectl apply -f ./argocd-projects/products-vcluster.yaml
 
 # Create namespace on host cluster where vclusters will live
 echo "Creating namespace for virtual clusters..."

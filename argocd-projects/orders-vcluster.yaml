@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: orders-vcluster
+  namespace: argocd
+  # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Orders Project
+  # Allow manifests to deploy from these Git repos
+  sourceRepos:
+  - 'https://github.com/LukeMwila/microservice-example-helm-charts.git'
+  - 'https://charts.loft.sh'
+  # Only permit applications to deploy to the following namespaces in the target clusters
+  destinations:
+  - namespace: argocd
+    server: https://kubernetes.default.svc
+  - namespace: vcluster
+    server: https://kubernetes.default.svc
+  - namespace: ecommerce
+    server: https://orders-vcluster.vcluster
+  # Deny all cluster-scoped resources from being created, except for Namespace
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
+  # namespaceResourceBlacklist:
+  # Deny all namespaced-scoped resources from being created, except for Deployment and StatefulSet
+  namespaceResourceWhitelist:
+  - group: '*'
+    kind: '*'

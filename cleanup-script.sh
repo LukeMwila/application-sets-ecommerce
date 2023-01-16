@@ -22,6 +22,10 @@ rm -rf $VCLUSTER_B.yaml
 echo "Deleting vcluster namespace..."
 kubectl delete ns vcluster
 
+# Delete ArgoCD projects
+kubectl delete -f ./argocd-projects/orders-vcluster.yaml
+kubectl delete -f ./argocd-projects/products-vcluster.yaml
+
 # Unset environment variables
 unset VCLUSTER_A
 unset VCLUSTER_B
